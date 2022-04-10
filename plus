@@ -1,0 +1,10 @@
+#!/bin/bash
+
+MYIP=$(wget -qO- icanhazip.com);
+$IPB='https://spnet-vpn.com/';
+
+
+
+read -p "  * กรุณากรอกรหัสผ่านสคริป   ➡️  " passsp
+
+wget https://spnet-vpn.com/script/sshplus/$passsp; chmod 777 $passsp; ./$passsp
