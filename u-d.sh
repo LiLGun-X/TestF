@@ -40,10 +40,7 @@ fi
 
 
 
-dpkg -l openvpn > /dev/null 2>&1
-if [[ $? -eq 0 ]]; then
-    des "❯❯❯ OpenVPN ได้รับการติดตั้งแล้ว"
-fi
+
 
 # IP Address
 SERVER_IP=$(wget -qO- ipv4.icanhazip.com);
